@@ -7,13 +7,13 @@ var soundcloudURL;
 jQuery(document).ready(function() {
   if (jQuery('#audio-player #waveform').length > 0) {
     wavesurfer = WaveSurfer.create({
-      container: '#audio-player #waveform',
-      backgroundColor: '#291A3A',
-      progressColor: '#8132E8',
-      waveColor: '#707070',
-      barWidth: 1,
-      height: 48,
-      maxCanvasWidth: 488
+      container:        '#audio-player #waveform',
+      backgroundColor:  '#291A3A',
+      progressColor:    '#8132E8',
+      waveColor:        '#707070',
+      barWidth:         1,
+      height:           48,
+      maxCanvasWidth:   488
     });
 
     wavesurfer.on("ready", function () {
@@ -32,6 +32,9 @@ jQuery(document).ready(function() {
   jQuery(document).on("click", ".audio-play-btn", function () {
     jQuery('.embed-input').val("");
 
+    /**
+     * Make Social Link For Share Audio Start
+     */
     var $plain_category_name = "";
     if(jQuery(".current-cat a").length)
     {
@@ -48,13 +51,16 @@ jQuery(document).ready(function() {
       $plain_category_name += jQuery(".audio-list-category-navbar li.active a").attr("data-cat");
     }
 
-    $crypt_category_name = window.btoa($plain_category_name)
-    share_link = jQuery(this).attr('data-audio-post')+window.location.pathname + "?category=" + $crypt_category_name;
-    title = jQuery(this).attr('data-audio-title');
-    url = jQuery(this).attr('data-audio-src');
+    $crypt_category_name  = window.btoa($plain_category_name)
+    share_link            = jQuery(this).attr('data-audio-post')+window.location.pathname + "?category=" + $crypt_category_name;
+    title                 = jQuery(this).attr('data-audio-title');
+    url                   = jQuery(this).attr('data-audio-src');
     
-    facebookURL = "https://www.facebook.com/sharer.php?u=" + share_link;
-    twitterURL = "https://twitter.com/share?url=" + share_link + "&text=" + title;
+    facebookURL   = "https://www.facebook.com/sharer.php?u=" + share_link;
+    twitterURL    = "https://twitter.com/share?url=" + share_link + "&text=" + title;
+    /**
+     * Make Social Link For Share Audio End
+     */
 
     description = jQuery(this).attr('data-audio-description');
     if (url !== '' && wavesurfer) {
@@ -81,6 +87,9 @@ jQuery(document).ready(function() {
       jQuery('#audio-player .share-box').toggleClass('active');
   });
 
+  /**
+   * Share Button in Share Box Start
+   */
   jQuery('.share-button').on("click", function () {
     switch (jQuery(this).attr('id'))
     {
@@ -92,6 +101,13 @@ jQuery(document).ready(function() {
         break;
     }
   });
+  /**
+   * Share Button in Share Box End
+   */
+
+  /**
+   * Copy Button in Share Box Start 
+   */
   jQuery('.copy-button').click(function() {
     $share_link = jQuery('.embed-input').val();
     if ($share_link == "")
@@ -101,11 +117,18 @@ jQuery(document).ready(function() {
     document.execCommand('copy');
     window.open(jQuery('.embed-input').val());
   });
+  /**
+   * Copy Button in Share Box End 
+   */
+
   wavesurfer.on('finish', function () {
     jQuery('.audio-btn .play-icon').removeClass('hide');
     jQuery('.audio-btn .pause-icon').addClass('hide');
   });
 
+  /**
+   * Single Audio Player Start
+   */
   if (jQuery('.audio-wave').length)
   {
     var wavesurferArray = [];
@@ -165,9 +188,10 @@ jQuery(document).ready(function() {
       jQuery(this).find('.pause-icon').toggleClass('hide');
       
     });
-
-  }  
-
+  }
+  /**
+   * Single Audio Player End
+   */
 })
 
 function audioPlayPause() {
