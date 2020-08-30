@@ -1,0 +1,316 @@
+/* Audio Player CSS */
+
+#audio-player {
+    position: fixed;
+    background: #291A3A;
+    width: 100%;
+    left: 0;
+    top: calc(100% - 108px);
+    height: 108px;
+    padding: 30px 0;
+    transition: all 1s;
+    transform: scaleX(1);
+    z-index: 99999;
+}
+
+#audio-player.close {
+    top: 100%;
+    height: 0;
+}
+
+#audio-player #waveform {
+    flex: 1;
+    max-width: 488px;
+}
+
+#audio-player .container {
+    max-width: 1110px;
+    margin: 0 auto;
+    display: flex;
+}
+
+#audio-player .meta-info {
+    margin-right: 30px;
+    max-width: 120px;
+}
+
+@media (max-width: 480px) {
+    #audio-player .meta-info {
+        margin-right: 10px;
+        max-width: 50px;
+    }
+}
+
+#audio-player .meta-info h5{
+    font-family: Quicksand;
+    font-size: 14px;
+    line-height: 18px;
+    color: #fff;
+    padding: 0;
+    margin-bottom: 8px;
+    max-width: 120px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+#audio-player .meta-info p{
+    font-family: Quicksand;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(255, 255, 255, .6);
+    max-width: 120px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+#audio-player .audio-btn {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    padding: 8px;
+    transition: all .3s;
+}
+
+#audio-player a.audio-btn:hover {
+    border: 1px solid #8132E8;
+    background: #8132E8;
+}
+
+#audio-player a.btn-play {
+    width: 48px;
+    height: 48px;
+    margin-right: 20px;
+    padding: 13px 17px;
+}
+
+.hide {
+    display: none;
+}
+
+#audio-player .timestamp {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    color: #FFF;
+    opacity: 0.6;
+}
+
+#audio-player .timestamp span {
+    font-size: 14px;
+    line-height: 18px;
+}
+
+#audio-player .actions {
+    margin-left: auto;
+}
+
+#audio-player .actions a.audio-btn:not(:last-child) {
+    margin-right: 20px;
+}
+.audio-player-controller {
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 30px;
+    top: 0;
+    right: 0;
+    line-height: 16px;
+}
+
+.audio-player-controller a {
+    font-size: 12px;
+    color: white;
+    opacity: 0.7;
+    transition: all 0.5s;
+}
+.audio-player-controller a:hover {
+    opacity: 1;
+}
+.audio-player-controller a:before {
+    content: "\4d";
+    position: absolute;
+    font-family: ETmodules;
+    left: 0;
+    bottom: 0;
+    font-size: 32px;
+}
+
+#audio-player .share-box {
+    position: absolute;
+    width: 100%;
+    max-width: 350px;
+    bottom: -200px;
+    right: 0;
+    background: #291A3A;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 26px 45px #00000059;
+    transition:  all 1s;
+    opacity: 0;
+}
+
+#audio-player .share-box.active {
+    bottom: 60px;
+    opacity: 1;
+}
+
+#audio-player .share-box h6 {
+    width: 100%;
+    padding-bottom: 20px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+#audio-player .share-box #social-networks {
+    padding-bottom: 15px;
+}
+
+#audio-player .share-box #social-networks >a {
+    transition: all .3s;
+    opacity: 0.65;
+}
+
+#audio-player .share-box #social-networks >a:hover {
+    opacity: 1;
+}
+
+#audio-player .share-box .embed-input-box {
+    position: relative;
+}
+
+#audio-player .share-box .embed-input-box .embed-input {
+    padding: 10px 50px 10px 20px;
+    width: 100%;
+    background: #1A0C2B;
+    border: 1px solid #342249;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #FFF;
+}
+
+#audio-player .share-box .embed-input-box .share-button {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 7px;
+    right: 16px;
+}
+
+.show-more {
+    width: 100%;
+    text-align: center;
+}
+
+.show-more .show-more-button {
+    position: relative;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    color: rgba(255, 255, 255, 0.71);
+    transition: all 0.5s;
+}
+
+.show-more-button:hover {
+    color: #FFFFFFb3;
+}
+
+.show-more-button:after {
+    position: absolute;
+    content: "\33";
+    font-family: "ETmodules";
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.71);
+    width: 100%;
+    left: 0px;
+    bottom: -16px;
+    transition: all 0.5s;
+}
+
+.show-more-button:hover:after {
+    color: #FFFFFFb3;
+    bottom: -25px;
+}
+
+
+
+/* single audio player */
+
+    .audio-frame {
+        display: flex; 
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .audio-frame .play-button {    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 49px;
+        height: 49px;
+        margin-right: 11px;
+        border: 1px solid #8132E8;
+        border-radius: 50%;
+        transition: all 0.5s;
+        opacity: 1;
+    }
+    .audio-frame .play-button .play-action-button {  
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 37px;
+        height: 37px;
+        padding-top: 3px;
+        padding-left: 5px;
+        border-radius: 50%;    
+        transition: all 0.5s;
+    }  
+    .audio-frame .play-button:hover  {   
+        background: #8132E833;
+        border: 1px solid #8132E833;
+    }
+    .audio-frame .play-button:hover .play-action-button {   
+        background: #8132E8;
+    }
+    .audio-frame .play-button:hover .play-action-button svg path{ 
+        transition: all 0.5s;    
+        stroke: #FFF;
+    }
+    .audio-frame .time-frame {
+        display: flex;
+        align-items: flex-end;
+        width: calc(100% - 60px);
+    }
+    .audio-frame .time-frame .audio-wave {
+        width: 100%;
+        height: 48px;
+        overflow: hidden;
+    }
+    .audio-frame .time-frame .audio-wave wave {
+        overflow: hidden !important;
+    }
+    .audio-frame .time-frame .current-time {
+        position: absolute;
+        top: 50px;
+        left: 45px;
+        color: #8132E8;
+        font-size: 14px;
+        line-height: 14px;
+    }
+    .audio-frame .time-frame .time-stamp {
+        margin-left: 10px;
+        display: flex;
+    }
+    .audio-frame .time-frame .time-stamp span { 
+        color: #ABBBCA;
+        font-size: 14px;
+        line-height: 14px;
+    }
