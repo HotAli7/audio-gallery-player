@@ -14,6 +14,9 @@ Audio Player     -       [audio_player audio_location=https://demo.music.com/dem
 <br />                             
 If you want to see how to work this plugin, please click <a href="https://dev.lfmaudio.com">Here</a>.
 
+<br />
+<br />
+
 If you want to use this plugin, 
 <br />
 
