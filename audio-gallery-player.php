@@ -9,6 +9,48 @@ Text Domain: audio-gallery-player
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
+/**
+* Custom Field For LFMAudio Item - order
+**/
+
+// Add new term meta to Add term page
+
+add_action( 'add_meta_boxes', 'lfm_add_meta_boxes' );
+
+function lfm_add_meta_boxes() {
+    $post_types = get_post_types();
+    foreach( $post_types as $ptype ) {
+        if ( $ptype == 'lfmaudio') {
+            add_meta_box( 'lfm-selector', 'Order of Audios', 'lfm_meta_box', $ptype, 'side', 'core' );
+        }
+    }
+}
+
+function lfm_meta_box( $post ) {
+    $post_meta = get_post_meta( $post->ID );
+
+    if (isset($post_meta['order'])) {
+        $order = $post_meta['order'][0];
+    } else {
+        $order = 9999;
+    }
+    // Template Selector
+    echo "<input id='order' name='order' value='" . $order . "' />";
+}
+
+add_action( 'save_post' , 'lfm_save_post_meta_order' );
+
+function lfm_save_post_meta_order( $post_id ) {
+
+    if ( isset( $_REQUEST['order'] ) ) 
+    {
+        update_post_meta( $post_id, 'order', $_REQUEST['order'] );
+    }
+    else
+    {
+        update_post_meta( $post_id, 'order', 9999 );
+    }
+}
 
 add_action( 'wp_enqueue_scripts', 'lfm_audio_player_enqueue_scripts' );
 
@@ -209,7 +251,10 @@ function lfmaudio_expand_category($cat_id, $page_number = 1, $page_size = 12, $s
                             'field'     => 'term_id',
                             'terms'     => $cat_id
                         )
-                    )
+                    ),
+                    'orderby'           => 'meta_value',
+                    'meta_key'          => 'order',
+                    'order'             => 'ASC'
                 );
                 $loop = new WP_Query( $args );
                 $total_posts = $loop->post_count;
@@ -224,8 +269,12 @@ function lfmaudio_expand_category($cat_id, $page_number = 1, $page_size = 12, $s
                             'field'         => 'term_id',
                             'terms'         => $cat_id
                         )
-                    )
+                    ),
+                    'orderby'           => 'meta_value',
+                    'meta_key'          => 'order',
+                    'order'             => 'ASC'
                 );
+                
                 $loop = new WP_Query( $args );
                 if ($loop->have_posts()) : while ($loop->have_posts()) : $loop->the_post();
                     $audio = get_posts( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'audio' ) );
@@ -339,7 +388,10 @@ function lfmaudio_expand_category($cat_id, $page_number = 1, $page_size = 12, $s
                                         'field'     => 'term_id',
                                         'terms'     => $category->term_id
                                     )
-                                )
+                                ),
+                                'orderby'           => 'meta_value',
+                                'meta_key'          => 'order',
+                                'order'             => 'ASC'
                             );
                             $loop = new WP_Query( $args );
 
@@ -537,7 +589,10 @@ if (! function_exists('lfmaudio_audio_list')) :
                                         'field'         => 'term_id',
                                         'terms'         => $categories[0]->term_id
                                     )
-                                )
+                                ),
+                                'orderby'           => 'meta_value',
+                                'meta_key'          => 'order',
+                                'order'             => 'ASC'
                             );
             $loop = new WP_Query( $args );
 
@@ -614,7 +669,10 @@ if (! function_exists('lfmaudio_audio_list')) :
                                         'field' => 'term_id',
                                         'terms' => $category->term_id
                                     )
-                                )
+                                ),
+                                'orderby'           => 'meta_value',
+                                'meta_key'          => 'order',
+                                'order'             => 'ASC'
                             );
 
                 $loop = new WP_Query( $args );
